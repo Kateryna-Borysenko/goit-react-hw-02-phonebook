@@ -8,10 +8,10 @@ class App extends Component {
   };
 
   onSubmit = newContact => {
-    const { id, name } = newContact;
+    const { id, name, number } = newContact;
 
     this.setState(prevState => ({
-      contacts: [...prevState.contacts, { id, name }],
+      contacts: [...prevState.contacts, { id, name, number }],
     }));
   };
 
