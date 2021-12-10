@@ -1,11 +1,13 @@
 import { Component } from 'react';
 import ContactForm from './ContactForm/ContactForm';
-import s from './App.module.css';
 import ContactList from './ContactList/ContactList';
+import Filter from './Filter/Filter';
+import s from './App.module.css';
 
 class App extends Component {
   state = {
     contacts: [],
+    filter: '',
   };
 
   onSubmit = newContact => {
@@ -20,8 +22,16 @@ class App extends Component {
     this.setState({ filter: e.target.value });
   };
 
+  //поиск совпадений
+  onFilterChange = () => {
+    const value = this.state.filter;
+    return this.state.contacts.filter(elem =>
+      elem.name.toLowerCase().includes(value.toLowerCase()),
+    );
+  };
+
   render() {
-    const { contacts } = this.state;
+    const { contacts, filter } = this.state;
 
     return (
       <div>
@@ -29,8 +39,9 @@ class App extends Component {
         <div className={s.wrap}>
           <ContactForm onSubmit={this.onSubmit} contacts={contacts} />
         </div>
+        <Filter value={filter} onChange={this.onChangeInput} />
         <h2 className={s.subtitle}>Contacts:</h2>
-        <ContactList contacts={this.state.contacts} />
+        <ContactList contacts={this.onFilterChange()} />
       </div>
     );
   }
