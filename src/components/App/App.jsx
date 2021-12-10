@@ -27,12 +27,19 @@ class App extends Component {
     this.setState({ filter: e.target.value });
   };
 
-  //поиск совпадений
+  //поиск совпадений в списке контактов
   onFilterChange = () => {
     const value = this.state.filter;
     return this.state.contacts.filter(elem =>
       elem.name.toLowerCase().includes(value.toLowerCase()),
     );
+  };
+
+  deleteContact = id => {
+    //перезаписываем текущее состояние state -> вернёт массив без удудалённого объекта определит его по id
+    this.setState(prevState => ({
+      contacts: prevState.contacts.filter(elem => elem.id !== id),
+    }));
   };
 
   render() {
@@ -46,7 +53,10 @@ class App extends Component {
         </div>
         <Filter value={filter} onChange={this.onChangeInput} />
         <h2 className={s.subtitle}>Contacts:</h2>
-        <ContactList contacts={this.onFilterChange()} />
+        <ContactList
+          contacts={this.onFilterChange()}
+          onDelete={this.deleteContact}
+        />
       </div>
     );
   }
