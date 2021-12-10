@@ -7,11 +7,12 @@ const Filter = ({ value, onChange }) => {
       <label className={s.label}>
         <span className={s.title}>Find contacts by name</span>
         <input
+          className={s.textField}
           type="text"
           name="filter"
           value={value}
           onChange={onChange}
-          placeholder="example: Nina Shevchnko"
+          placeholder="example: Nina"
         />
       </label>
     </div>
