@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import ContactForm from './ContactForm/ContactForm';
 import s from './App.module.css';
+import ContactList from './ContactList/ContactList';
 
 class App extends Component {
   state = {
@@ -28,6 +29,8 @@ class App extends Component {
         <div className={s.wrap}>
           <ContactForm onSubmit={this.onSubmit} contacts={contacts} />
         </div>
+        <h2 className={s.subtitle}>Contacts:</h2>
+        <ContactList contacts={this.state.contacts} />
       </div>
     );
   }

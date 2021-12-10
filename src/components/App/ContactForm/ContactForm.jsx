@@ -23,7 +23,7 @@ class ContactForm extends Component {
       name, //aналог name: name
       number,
     });
-    this.reset();
+    // this.reset();
   };
 
   onChangeInput = e => {
@@ -32,9 +32,9 @@ class ContactForm extends Component {
     this.setState({ [name]: value });
   };
 
-  reset = () => {
-    this.state({ name: '', number: '' });
-  };
+  // reset = () => {
+  //   this.state({ name: '', number: '' });
+  // };
 
   render() {
     const { name, number } = this.state;
