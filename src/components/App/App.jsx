@@ -13,9 +13,14 @@ class App extends Component {
   onSubmit = newContact => {
     const { id, name, number } = newContact;
 
-    this.setState(prevState => ({
-      contacts: [...prevState.contacts, { id, name, number }],
-    }));
+    //проверка на одинаковые контакты
+    const isInContactList = contact => contact.name === newContact.name;
+
+    this.state.contacts.some(isInContactList)
+      ? alert(`${newContact.name} is already in contacts`)
+      : this.setState(prevState => ({
+          contacts: [...prevState.contacts, { id, name, number }],
+        }));
   };
 
   onChangeInput = e => {

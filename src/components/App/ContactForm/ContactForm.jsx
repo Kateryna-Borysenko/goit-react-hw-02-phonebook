@@ -19,10 +19,10 @@ class ContactForm extends Component {
     // number:"455-25-33"
     this.props.onSubmit({
       id: nanoid(),
-      name, //aналог name: name
+      name, //aналог записи name: name
       number,
     });
-    // this.reset();
+    this.reset();
   };
 
   onChangeInput = e => {
@@ -31,9 +31,10 @@ class ContactForm extends Component {
     this.setState({ [name]: value });
   };
 
-  // reset = () => {
-  //   this.state({ name: '', number: '' });
-  // };
+  // важно влиять на состояние через .setState
+  reset = () => {
+    this.setState({ name: '', number: '' });
+  };
 
   render() {
     const { name, number } = this.state;
